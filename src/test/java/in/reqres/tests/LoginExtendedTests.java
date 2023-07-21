@@ -1,7 +1,9 @@
 package in.reqres.tests;
 
-import in.reqres.models.LoginBodyModel;
-import in.reqres.models.LoginResponseModel;
+import in.reqres.models.LoginBodyLombokModel;
+import in.reqres.models.LoginBodyPojoModel;
+import in.reqres.models.LoginResponseLombokModel;
+import in.reqres.models.LoginResponsePojoModel;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
@@ -32,11 +34,11 @@ public class LoginExtendedTests {
 
     @Test
     void successfulLoginWithPojoModelsTest() {
-        LoginBodyModel authData = new LoginBodyModel();
+        LoginBodyPojoModel authData = new LoginBodyPojoModel();
         authData.setEmail("eve.holt@reqres.in");
         authData.setPassword("cityslicka");
 
-        LoginResponseModel loginResponse = given()
+        LoginResponsePojoModel loginResponse = given()
                 .log().uri()
                 .log().method()
                 .log().body()
@@ -48,7 +50,30 @@ public class LoginExtendedTests {
                 .log().status()
                 .log().body()
                 .statusCode(200)
-                .extract().as(LoginResponseModel.class);
+                .extract().as(LoginResponsePojoModel.class);
+
+        assertEquals("QpwL5tke4Pnpja7X4", loginResponse.getToken());
+    }
+
+    @Test
+    void successfulLoginWithLombokModelsTest() {
+        LoginBodyLombokModel authData = new LoginBodyLombokModel();
+        authData.setEmail("eve.holt@reqres.in");
+        authData.setPassword("cityslicka");
+
+        LoginResponseLombokModel loginResponse = given()
+                .log().uri()
+                .log().method()
+                .log().body()
+                .contentType(JSON)
+                .body(authData)
+                .when()
+                .post("https://reqres.in/api/login")
+                .then()
+                .log().status()
+                .log().body()
+                .statusCode(200)
+                .extract().as(LoginResponseLombokModel.class);
 
         assertEquals("QpwL5tke4Pnpja7X4", loginResponse.getToken());
     }
