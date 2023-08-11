@@ -23,7 +23,6 @@ public class CartTests extends TestBase {
                 .cookie(authCookieKey);
 
         // get actual cart size
-
         String data = "product_attribute_72_5_18=52" +
                 "&product_attribute_72_6_19=54" +
                 "&product_attribute_72_3_20=58" +
