@@ -1,6 +1,5 @@
 package com.demoqa.api;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data

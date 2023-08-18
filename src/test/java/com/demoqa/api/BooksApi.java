@@ -1,13 +1,11 @@
 package com.demoqa.api;
 
-import com.demoqa.models.CredentialsModel;
 import com.demoqa.models.LoginResponseModel;
-
 import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
 
 public class BooksApi {
-    public void deleteAllBooks(LoginResponseModel loginResponse) {
+    public void deleteAllBooksAPI(LoginResponseModel loginResponse) {
         given()
                 .contentType(JSON)
                 .header("Authorization", "Bearer " + loginResponse.getToken())
@@ -18,7 +16,7 @@ public class BooksApi {
                 .statusCode(204);
     }
 
-    public void addBook(LoginResponseModel loginResponse, AddBooksListModel booksList ) {
+    public void addBookAPI(LoginResponseModel loginResponse, AddBooksListModel booksList ) {
         given()
                 .contentType(JSON)
                 .header("Authorization", "Bearer " + loginResponse.getToken())
