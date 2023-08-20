@@ -1,5 +1,6 @@
 package com.demoqa.api;
 
+import com.demoqa.models.AddBooksListModel;
 import com.demoqa.models.LoginResponseModel;
 import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
