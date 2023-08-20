@@ -2,3 +2,5 @@
 /build
 /.gradle
 *.class
+gradlew
+gradlew.bat
