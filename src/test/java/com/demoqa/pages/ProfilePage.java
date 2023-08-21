@@ -16,13 +16,16 @@ public class ProfilePage extends TestBase {
             confirmPopupText = $(byText("OK")),
             noBooksPopupText = $(byText("All Books deleted."));
     public ProfilePage openProfile (LoginResponseModel loginResponseModel){
+
         open("/favicon.ico");
         getWebDriver().manage().addCookie(new Cookie("userID", loginResponseModel.getUserId()));
         getWebDriver().manage().addCookie(new Cookie("token", loginResponseModel.getToken()));
         getWebDriver().manage().addCookie(new Cookie("expires", loginResponseModel.getExpires()));
         return this;
     }
+
     public ProfilePage delAllBooksS (){
+
         open("/profile");
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
@@ -31,6 +34,7 @@ public class ProfilePage extends TestBase {
         Selenide.confirm();
         return this;
     }
+
     public ProfilePage checkNoBooksInProfile (){
         buttonText.click();
         noBooksPopupText.exists();

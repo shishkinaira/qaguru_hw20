@@ -16,6 +16,7 @@ public class ProfileBooksListTests extends TestBase {
 
     @Test
     void addBookToProfileTest() {
+
         LoginResponseModel loginResponse = authorizationApi.login(credentials);
         profilePage.openProfile(loginResponse);
         booksApi.deleteAllBooksAPI(loginResponse);
@@ -30,12 +31,15 @@ public class ProfileBooksListTests extends TestBase {
         booksList.setCollectionOfIsbns(isbnList);
         booksApi.addBookAPI(loginResponse, booksList);
         open("/profile");
+
         $("[id='see-book-Git Pocket Guide']").shouldBe(visible);
     }
 
     @Test
     void deleteBookFromProfileTest() {
+
         LoginResponseModel loginResponse = authorizationApi.login(credentials);
+
         booksApi.deleteAllBooksAPI(loginResponse);
         IsbnModel isbnModel = new IsbnModel();
         isbnModel.setIsbn("9781449325862");
