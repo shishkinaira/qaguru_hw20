@@ -12,12 +12,15 @@ import static com.demoqa.tests.TestData.credentials;
 public class LoginTests extends TestBase {
     @Test
     void successfulLoginTest() {
+
         LoginResponseModel loginResponse = authorizationApi.login(credentials);
+
         open("/favicon.ico");
         getWebDriver().manage().addCookie(new Cookie("userID", loginResponse.getUserId()));
         getWebDriver().manage().addCookie(new Cookie("token", loginResponse.getToken()));
         getWebDriver().manage().addCookie(new Cookie("expires", loginResponse.getExpires()));
         open("/profile");
+
         $("#userName-value").shouldHave(text(credentials.getUserName()));
     }
 }
